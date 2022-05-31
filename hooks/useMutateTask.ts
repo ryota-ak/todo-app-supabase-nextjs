@@ -27,6 +27,7 @@ export const useMutateTask = () => {
       },
     }
   )
+
   const updateTaskMutation = useMutation(
     async (task: EditedTask) => {
       const { data, error } = await supabase
@@ -55,6 +56,7 @@ export const useMutateTask = () => {
       },
     }
   )
+  
   const deleteTaskMutation = useMutation(
     async (id: string) => {
       const { data, error } = await supabase.from('todos').delete().eq('id', id)

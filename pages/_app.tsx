@@ -36,6 +36,7 @@ const queryClient = new QueryClient({
     },
   },
 })
+
 function MyApp({ Component, pageProps }: AppProps) {
   const { push, pathname } = useRouter()
   const validateSession = async () => {
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       await push('/')
     }
   }
+
   supabase.auth.onAuthStateChange((event, _) => {
     if (event === 'SIGNED_IN' && pathname === '/') {
       push('/dashboard')
@@ -54,9 +56,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       push('/')
     }
   })
+
   useEffect(() => {
     validateSession()
   }, [])
+  
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
